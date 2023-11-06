@@ -1,10 +1,11 @@
 import { Router } from "express";
-import { Article } from "../model/Article.js";
+import * as ArticleController from '../controller/article.js'
+import "../db/connect.js"
+
 const ArtilcleRouter = Router()
 
-ArtilcleRouter.post('/add',(req,res) => {
-res.send('Articles add')
-})
+
+ArtilcleRouter.post('/add', ArticleController.addArticle)
 
 ArtilcleRouter.get('/list',(req,res) => {
     res.send('Article List')

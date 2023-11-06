@@ -1,5 +1,5 @@
 import {Schema,model} from "mongoose";
-//import { Author } from "./Author.js";
+import { Author } from "./Author.js";
 
 
 // Define the Article Schema
@@ -11,10 +11,7 @@ const ArticleSchema = new Schema({
         type : Schema.Types.ObjectId,
         ref : 'Author',
     },
-    // category : {
-    //     type : Schema.Types.ObjectId,
-    //     type: 'Category'
-    // },
+    categroy: String,
     tags: [String],
     publicationDate: Date
 })

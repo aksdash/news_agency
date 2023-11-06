@@ -1,5 +1,5 @@
 import { Schema, model  } from "mongoose";
-import { ArticleSchema } from "./Article";
+import { Article } from "./Article.js";
 
 const AuthorSchema = new Schema({
     name : String,
@@ -13,5 +13,5 @@ const AuthorSchema = new Schema({
     ]
 })
 
-const Author = model("author", ArticleSchema, "author" )
+const Author = model("author", AuthorSchema, "author" )
 export { Author, AuthorSchema}
