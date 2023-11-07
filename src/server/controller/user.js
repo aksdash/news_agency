@@ -1,6 +1,7 @@
 import { User } from "../model/User.js";
 import jwt from "jsonwebtoken"
 import Bcrypt from "bcrypt"
+import { APIError, APIResponse } from "../Util/ApiResponse.js";
 
 const secret_key = process.env.SECRET_KEY || "XYZ738SDFJJSHF"
 
@@ -26,14 +27,14 @@ export async function login(req, res){
             const payload = await Bcrypt.compare(password, _password)
             if (payload){
                 const token = await jwt.sign({id: _id}, secret_key)
-                res.status(200).send({token: token, msg: "Login successful"})
+                new APIResponse(res,{token: token},"Login successful").json()
             }else{
-                res.send("UnAuthorised User")
+               throw new Error('UnAuthorised User')
             }
         }else{
-            res.status(404).send("No User Found")
+            throw new Error("No User Found")
         }
      }catch(err){
-        res.send(err)
+        new APIError(res,{},err.message,500).json()
      }
 }

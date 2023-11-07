@@ -1,5 +1,6 @@
 import { Article } from "../model/Article.js";
 import { Author } from "../model/Author.js";
+import { APIResponse, APIError } from "../Util/ApiResponse.js";
 import "../db/connect.js"
 
 const author = new Author({
@@ -16,10 +17,10 @@ export async function addArticle(req,res) {
         body.author = author
         const article = new Article(body)
         await author.save().then(() => article.save())
-        res.status(200).send("Article saved Successfully")
+        new APIResponse(res,{},'Article saved Successfully').json()
     
     }catch(err){
-        res.status(500).send(err)
+        new APIError(res, {},"Error creating article").json();
     }
 }
 
@@ -29,10 +30,10 @@ export async function deleteArticle(req, res) {
         const {params} = req
         const {id } = params
         await Article.findByIdAndDelete(id)
-        res.status(200).send("Article Deleted successfully")
+        new APIResponse(res,{},"Article Deleted successfully").json()    
     }catch(err){
         console.log(err)
-        res.status(500).send(err)
+        new APIError(res,{},err.message).json()
     }
 }
 
@@ -53,8 +54,8 @@ export async function updateArticle(req, res) {
 export async function getArticles(req,res){
     try {
         const list = await Article.find()
-        res.status(200).send(list)
+        new APIResponse(res,list,"").json()
     }catch(err){
-        res.status(500).send(err)
+        new APIError(res,{},err.message).json()
     }
 }
