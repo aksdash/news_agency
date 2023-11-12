@@ -27,7 +27,7 @@ export async function login(req, res){
             const payload = await Bcrypt.compare(password, _password)
             if (payload){
                 const token = await jwt.sign({id: _id}, secret_key)
-                new APIResponse(res,{token: token},"Login successful").json()
+                new APIResponse(res,{token: token, id:_id},"Login successful").json()
             }else{
                throw new Error('UnAuthorised User')
             }

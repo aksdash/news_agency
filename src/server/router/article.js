@@ -11,7 +11,7 @@ const ArtilcleRouter = Router()
 ArtilcleRouter.post('/add', ArticleController.addArticle)
 ArtilcleRouter.delete('/:id', ArticleController.deleteArticle)
 ArtilcleRouter.put('/:id', ArticleController.updateArticle)
-ArtilcleRouter.get('/list', Auth.AuthLogin ,isAdminUser,ArticleController.getArticles)
+ArtilcleRouter.get('/list',ArticleController.getArticles)
 
 
 export default ArtilcleRouter

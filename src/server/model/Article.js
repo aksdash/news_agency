@@ -7,6 +7,8 @@ const ArticleSchema = new Schema({
     title : {type: String, required: true},
     description :{type: String, required: true},
     imageUrl: String,
+    url : String,
+    publishedAt: String,
     author : {
         type : Schema.Types.ObjectId,
         ref : 'Author',
