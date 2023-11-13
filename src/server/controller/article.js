@@ -52,8 +52,13 @@ export async function updateArticle(req, res) {
 }
 
 export async function getArticles(req,res){
+    const { limit = 10, offset = 0 } = req.query;
+    const limitNum = parseInt(limit);
+    const offsetNum = parseInt(offset);
     try {
         const list = await Article.find()
+        .limit(limitNum)
+        .skip(offsetNum)
         new APIResponse(res,list,"").json()
     }catch(err){
         new APIError(res,{},err.message).json()
