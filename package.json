@@ -5,15 +5,18 @@
   "main": "src/server/application.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "server": "nodemon src/server/application.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.3.10",
+    "chai-http": "^4.4.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "mocha": "^10.2.0",
     "mongoose": "^8.0.0",
     "socket.io": "^4.7.2"
   },

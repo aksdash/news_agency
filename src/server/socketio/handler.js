@@ -5,13 +5,11 @@ export async function IOHandler(io){
         
         socket.on('join', (name) => {
             socket.username = name;
-            console.log(`${name} joined the chat`);
         // Broadcast a message to all clients about the new user joining
             io.emit('message', { username: name, message: `${name} joined the chat` });
         });
 
         socket.on('message', (data) => {
-            console.log(`Message from ${data.username}: ${data.message}`);
             // Broadcast the message to all clients
             io.emit('message', { username: data.username, message: data.message });
           });
