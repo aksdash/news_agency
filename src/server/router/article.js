@@ -12,6 +12,7 @@ ArtilcleRouter.post('/add',AuthLogin,ArticleController.addArticle)
 ArtilcleRouter.delete('/:id',AuthLogin ,ArticleController.deleteArticle)
 ArtilcleRouter.put('/:id', AuthLogin,ArticleController.updateArticle)
 ArtilcleRouter.get('/list',ArticleController.getArticles)
+ArtilcleRouter.get('/list/:category', ArticleController.getArticlesByCategories)
 
 
 export default ArtilcleRouter

@@ -13,6 +13,7 @@ const author = new Author({
 export async function addArticle(req,res) {
     try {
         let {body} = req
+        console.log('body',body)
         body.publicationDate = new Date()
         body.author = author
         const article = new Article(body)
@@ -63,4 +64,18 @@ export async function getArticles(req,res){
     }catch(err){
         new APIError(res,{},err.message).json()
     }
+}
+
+export async function getArticlesByCategories(req,res){
+    const {params} = req
+     const {category } = params
+     try{
+        const articles = await Article.find({ category });
+       
+        new APIResponse(res,articles,"").json()
+     }catch(err){
+        throw new APIError(res, {},err.message).json()
+     }
+     
+
 }

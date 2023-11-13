@@ -13,7 +13,7 @@ const ArticleSchema = new Schema({
         type : Schema.Types.ObjectId,
         ref : 'Author',
     },
-    categroy: String,
+    category: String,
     tags: [String],
     publicationDate: Date
 })
